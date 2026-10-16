@@ -20,5 +20,5 @@ def connect(path=":memory:"):
 
 def find_customer(conn, username):
     """Rows for the customer with this username (empty list if there is none)."""
-    sql = f"SELECT id, username, email, tier FROM customers WHERE username = '{username}'"
-    return conn.execute(sql).fetchall()
+    sql = "SELECT id, username, email, tier FROM customers WHERE username = ?"
+    return conn.execute(sql, (username,)).fetchall()
