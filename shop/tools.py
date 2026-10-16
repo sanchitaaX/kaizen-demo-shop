@@ -9,6 +9,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def stock_report(sku):
     """The stock line for one SKU, e.g. 'MUG-01: 14 in stock'."""
-    cmd = f'"{sys.executable}" -m shop.stock {sku}'
-    out = subprocess.run(cmd, shell=True, cwd=ROOT, capture_output=True, text=True, timeout=30)
+    cmd = [sys.executable, "-m", "shop.stock", sku]
+    out = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=30)
     return out.stdout.strip()
